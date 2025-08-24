@@ -7,15 +7,15 @@ import { useParams } from 'next/navigation';
 import { fetchNoteById } from '../../../lib/noteService';
 
 export default function NoteDetailsClient() {
-  const { noteid } = useParams<{ noteid: string }>();
+  const { id } = useParams<{ id: string }>();
 
   const {
     data: note,
     isLoading,
     error,
   } = useQuery({
-    queryKey: ['note', noteid],
-    queryFn: () => fetchNoteById(noteid),
+    queryKey: ['note', id],
+    queryFn: () => fetchNoteById(id),
     refetchOnMount: false,
   });
 
