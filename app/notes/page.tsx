@@ -5,7 +5,7 @@ import {
 } from '@tanstack/react-query';
 import css from '../Home.module.css';
 
-import NotesClient from './NotesClient';
+import NotesClient from './Notes.client';
 
 import { fetchNotes } from '../../lib/noteService';
 

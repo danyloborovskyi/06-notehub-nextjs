@@ -60,7 +60,7 @@ export default function NotesClient() {
         </button>
       </header>
       {isLoading && <p>Loading...</p>}
-      {/* {isError && <p>Something went wrong 😢</p>} */}
+      {isError && <p>Something went wrong 😢</p>}
 
       {data?.notes && <NoteList notes={data.notes} />}
       {modalOpen && (
