@@ -7,7 +7,7 @@ import css from '../Home.module.css';
 
 import NotesClient from './Notes.client';
 
-import { fetchNotes } from '../../lib/noteService';
+import { fetchNotes } from '../../lib/api';
 
 const Notes = async () => {
   const queryClient = new QueryClient();

@@ -10,9 +10,9 @@ import NoteForm from '../../components/NoteForm/NoteForm';
 import Pagination from '../../components/Pagination/Pagination';
 import css from './NotesClient.module.css';
 
-import { fetchNotes } from '../../lib/noteService';
+import { fetchNotes } from '../../lib/api';
 import NoteList from '../../components/NoteList/NoteList';
-import type { NoteResponse } from '../../lib/noteService';
+import type { NoteResponse } from '../../lib/api';
 
 export default function NotesClient() {
   const [search, setSearch] = useState<string>('');
