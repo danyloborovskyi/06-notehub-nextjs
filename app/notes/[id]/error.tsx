@@ -4,8 +4,8 @@ type Props = {
   error: Error;
 };
 
-const Error = ({ error }: Props) => {
+const NoteError = ({ error }: Props) => {
   return <p>Could not fetch note {error.message}</p>;
 };
 
-export default Error;
+export default NoteError;

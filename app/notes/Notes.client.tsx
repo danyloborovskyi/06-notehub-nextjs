@@ -13,6 +13,8 @@ import css from './NotesClient.module.css';
 import { fetchNotes } from '../../lib/api';
 import NoteList from '../../components/NoteList/NoteList';
 import type { NoteResponse } from '../../lib/api';
+import Error from './error';
+import Loading from '../loading';
 
 export default function NotesClient() {
   const [search, setSearch] = useState<string>('');
@@ -34,13 +36,16 @@ export default function NotesClient() {
     setModalOpen(false);
   }
 
-  const { data, isLoading, isError } = useQuery<NoteResponse>({
+  const { data, isLoading, error } = useQuery<NoteResponse>({
     queryKey: ['notes', search, page, perPage],
     queryFn: () => fetchNotes({ search, page, perPage }),
     refetchOnWindowFocus: false,
     placeholderData: keepPreviousData,
     refetchOnMount: false,
   });
+
+  if (isLoading) return <Loading />;
+  if (error) return <Error error={error} />;
 
   return (
     <div className={css.app}>
@@ -59,8 +64,6 @@ export default function NotesClient() {
           Create note +
         </button>
       </header>
-      {isLoading && <p>Loading...</p>}
-      {isError && <p>Something went wrong 😢</p>}
 
       {data?.notes && <NoteList notes={data.notes} />}
       {modalOpen && (

@@ -6,6 +6,9 @@ import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'next/navigation';
 import { fetchNoteById } from '../../../lib/api';
 
+import NoteError from './error';
+import Loading from '../../loading';
+
 export default function NoteDetailsClient() {
   const { id } = useParams<{ id: string }>();
 
@@ -19,15 +22,20 @@ export default function NoteDetailsClient() {
     refetchOnMount: false,
   });
 
+  if (isLoading) return <Loading />;
+  if (error) return <NoteError error={error} />;
+
   return (
     <div className={css.container}>
-      <div className={css.item}>
-        <div className={css.header}>
-          <h2>{note?.title}</h2>
+      {note && (
+        <div className={css.item}>
+          <div className={css.header}>
+            <h2>{note?.title}</h2>
+          </div>
+          <p className={css.content}>{note?.content}</p>
+          <p className={css.date}>{note?.createdAt}</p>
         </div>
-        <p className={css.content}>{note?.content}</p>
-        <p className={css.date}>{note?.createdAt}</p>
-      </div>
+      )}
     </div>
   );
 }

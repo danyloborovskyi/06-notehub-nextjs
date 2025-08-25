@@ -15,7 +15,7 @@ import NoteDetailsClient from './NoteDetails.client';
 // };
 
 type Props = {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
 
 export default async function NoteDetails({ params }: Props) {
